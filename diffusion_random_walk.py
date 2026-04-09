@@ -28,15 +28,15 @@ for idx in range(1, maxTime + 1):
 # Plot dynamic histogram
 plt.figure(figsize=(10, 6))
 
-# Calculate mean displacement from center for each time step
-mean_displacement = np.mean(X, axis=0)
-std_displacement = np.std(X, axis=0)
+# Calculate mean square displacement for each time step
+mean_square_displacement = np.mean(X**2, axis=0)
+std_square_displacement = np.std(X**2, axis=0)
 
-plt.plot(t, mean_displacement, 'b-', linewidth=2, label='Mean')
-plt.fill_between(t, mean_displacement - std_displacement, mean_displacement + std_displacement, alpha=0.3, label='±1 Std Dev')
+plt.plot(t, mean_square_displacement, 'b-', linewidth=2, label='Mean')
+plt.fill_between(t, mean_square_displacement - std_square_displacement, mean_square_displacement + std_square_displacement, alpha=0.3, label='±1 Std Dev')
 plt.xlabel('Time')
-plt.ylabel('Displacement from Center')
-plt.title('Mean Particle Displacement Over Time')
+plt.ylabel('Mean Square Displacement')
+plt.title('Mean Square Displacement Over Time')
 plt.legend()
 plt.grid(True, alpha=0.3)
 plt.show()
