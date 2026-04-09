@@ -26,15 +26,18 @@ for idx in range(1, maxTime + 1):
     X[:, idx] = X[:, idx - 1] + dX
 
 # Plot dynamic histogram
-plt.figure(figsize=(12, 7))
+plt.figure(figsize=(10, 6))
 
-# Plot trajectories for all particles
-for particle_idx in range(numParticles):
-    plt.plot(t, X[particle_idx, :], linewidth=0.5, alpha=0.5)
+# Calculate mean displacement from center for each time step
+mean_displacement = np.mean(X, axis=0)
+std_displacement = np.std(X, axis=0)
 
+plt.plot(t, mean_displacement, 'b-', linewidth=2, label='Mean')
+plt.fill_between(t, mean_displacement - std_displacement, mean_displacement + std_displacement, alpha=0.3, label='±1 Std Dev')
 plt.xlabel('Time')
-plt.ylabel('Position')
-plt.title('Trajectories of All Particles')
+plt.ylabel('Displacement from Center')
+plt.title('Mean Particle Displacement Over Time')
+plt.legend()
 plt.grid(True, alpha=0.3)
 plt.show()
 
